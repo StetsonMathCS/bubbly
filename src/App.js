@@ -6,7 +6,7 @@ import date from 'date-and-time';
 const axios = require('axios').default;
 
 function getNotes() {
-    return axios.get('http://192.168.68.109:5010/getNotes')
+    return axios.get('http://10.50.71.100:5005/getNotes')
         .then(function(response) {
             const result = response.data;
             result.sort((a,b) => date.parse(b.lastModifiedDate, "YYYY-MM-DD hh:mm:ss") - date.parse(a.lastModifiedDate, "YYYY-MM-DD hh:mm:ss"));
@@ -16,21 +16,21 @@ function getNotes() {
 }
 
 function updateNote(id, title, content) {
-    return axios.post('http://192.168.68.109:5010/updateNote',
+    return axios.post('http://10.50.71.100:5005/updateNote',
         {'noteid': id, 'title': title, 'content': content})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error) });
 }
 
 function createNote(title, content) {
-    return axios.post('http://192.168.68.109:5010/createNote',
+    return axios.post('http://10.50.71.100:5005/createNote',
         {'title': title, 'content': content})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error); });
 }
 
 function deleteNote(id) {
-    return axios.post('http://192.168.68.109:5010/deleteNote',
+    return axios.post('http://10.50.71.100:5005/deleteNote',
         {'noteid': id})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error); });
@@ -53,7 +53,7 @@ function App() {
                 <B.Tab.Container id="notes-tabs" activeKey={activeTab} onSelect={k => setActiveTab(k)}>
                     <B.Row>
                         <B.Col xs={4}>
-                            <img src="/bubbly.png" width={200} className="my-1"/>
+                            <img src="build/bubbly.png" width={200} className="my-1"/>
                             <B.ListGroup>
                                 <B.ListGroup.Item action href="#newnote">
                                     {editingNoteId ? "Edit Note" : "New Note"}
