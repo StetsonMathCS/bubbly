@@ -1,0 +1,5 @@
+URLS
+https://f23eevfn49.execute-api.us-east-1.amazonaws.com/getNote
+https://f23eevfn49.execute-api.us-east-1.amazonaws.com/createNote
+https://f23eevfn49.execute-api.us-east-1.amazonaws.com/deleteNote
+https://f23eevfn49.execute-api.us-east-1.amazonaws.com/updateNote
