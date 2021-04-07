@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 import json
+import os
 import datetime
 import uuid
 
@@ -68,5 +69,5 @@ def deleteNote():
         return "Not found"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5010)
+    app.run(host="0.0.0.0", port=os.environ['PORT'])
 

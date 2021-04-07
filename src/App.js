@@ -5,8 +5,10 @@ import date from 'date-and-time';
 
 const axios = require('axios').default;
 
+const API_URL = 'http://127.0.0.1:8001';
+
 function getNotes() {
-    return axios.get('http://192.168.68.109:5010/getNotes')
+    return axios.get(API_URL+'/getNotes')
         .then(function(response) {
             const result = response.data;
             result.sort((a,b) => date.parse(b.lastModifiedDate, "YYYY-MM-DD hh:mm:ss") - date.parse(a.lastModifiedDate, "YYYY-MM-DD hh:mm:ss"));
@@ -16,21 +18,21 @@ function getNotes() {
 }
 
 function updateNote(id, title, content) {
-    return axios.post('http://192.168.68.109:5010/updateNote',
+    return axios.post(API_URL+'/updateNote',
         {'noteid': id, 'title': title, 'content': content})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error) });
 }
 
 function createNote(title, content) {
-    return axios.post('http://192.168.68.109:5010/createNote',
+    return axios.post(API_URL+'/createNote',
         {'title': title, 'content': content})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error); });
 }
 
 function deleteNote(id) {
-    return axios.post('http://192.168.68.109:5010/deleteNote',
+    return axios.post(API_URL+'/deleteNote',
         {'noteid': id})
         .then(function(response) { return response.data; })
         .catch(function(error) { console.log(error); });
